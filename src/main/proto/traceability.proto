@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+package dk.via.pro3.generated;
+
+service TraceabilityService {
+  rpc GetAnimalsForProduct(GetAnimalsForProductRequest)
+      returns (AnimalRegistrationNumbersResponse);
+
+  rpc GetProductsForAnimal(GetProductsForAnimalRequest)
+      returns (ProductIdsResponse);
+}
+
+// Request containing the product we want to investigate.
+message GetAnimalsForProductRequest {
+  string product_id = 1;
+}
+
+// Contains all animals involved in the given product.
+message AnimalRegistrationNumbersResponse {
+  repeated string animal_registration_numbers = 1;
+}
+
+// Request containing the animal we want to investigate.
+message GetProductsForAnimalRequest {
+  string animal_registration_number = 1;
+}
+
+// Contains all products involving the given animal.
+message ProductIdsResponse {
+  repeated string product_ids = 1;
+}
